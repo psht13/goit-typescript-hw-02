@@ -5,8 +5,9 @@ interface ImageCard {
 
 const ImageCard = ({ url, alt }: ImageCard) => {
   return (
-    <div>
+    <div className=" h-[200px] overflow-hidden rounded-xl shadow-xl cursor-pointer">
       <img
+        className="w-[300px] h-full"
         src={url}
         alt={alt}
       />
