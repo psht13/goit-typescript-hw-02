@@ -7,10 +7,12 @@ interface Response {
 }
 
 export const getPhotosByQuery = async (
-  query: string
+  query: string,
+  page: number,
+  perPage: number
 ): Promise<Response | null> => {
   const END_POINT: string = "/search/photos";
-  const URL: string = `${BASE_URL}${END_POINT}?query=${query}`;
+  const URL: string = `${BASE_URL}${END_POINT}?query=${query}&page=${page}&per_page=${perPage}`;
 
   try {
     const response = await fetch(URL, {
