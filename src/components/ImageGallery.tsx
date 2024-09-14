@@ -14,7 +14,7 @@ const ImageGallery = ({ photos, handleCardClick }: ImageGallery) => {
             handleCardClick={handleCardClick}
             url={photo.urls.small}
             alt={photo.description}
-            largeUrl={photo.urls.full}
+            largeUrl={photo.urls.regular}
           />
         </li>
       ))}

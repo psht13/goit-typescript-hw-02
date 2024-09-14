@@ -20,14 +20,14 @@ const ImageModal = ({ isOpen, handleModalClose, modalContent }: ImageModal) => {
           backgroundColor: "rgba(0, 0, 0, 0.75)",
         },
         content: {
+          position: "relative",
+          inset: 0,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           border: "none",
           background: "transparent",
           padding: 0,
-          maxWidth: "90vw",
-          maxHeight: "90vh",
           overflow: "hidden",
         },
       }}
@@ -38,7 +38,7 @@ const ImageModal = ({ isOpen, handleModalClose, modalContent }: ImageModal) => {
         <img
           src={modalContent?.url}
           alt={modalContent?.alt}
-          className="max-h-full max-w-full object-contain block m-auto"
+          className="max-h-full max-w-full object-scale-down block m-auto"
         />
       </div>
     </ReactModal>
