@@ -53,3 +53,8 @@ type Photo = {
   urls: PhotoUrls;
   links: PhotoLinks;
 };
+
+type Modal = {
+  url: string;
+  alt: string | undefined;
+};

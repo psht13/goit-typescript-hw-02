@@ -7,6 +7,7 @@ import { error, success } from "./utils/notifications";
 import Loader from "./components/Loader";
 import LoadMoreBtn from "./components/LoadMoreBtn";
 import { PER_PAGE } from "./utils/constants";
+import ImageModal from "./components/ImageModal";
 
 const App = () => {
   const [photos, setPhotos] = useState<Photo[]>([]);
@@ -15,6 +16,8 @@ const App = () => {
   const [loadMore, setLoadMore] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
+  const [isOpen, setIsOpen] = useState(false);
+  const [modalContent, setModalContent] = useState<null | Modal>(null);
 
   useEffect(() => {
     if (searchQuery === "") return;
@@ -70,13 +73,32 @@ const App = () => {
     setPage(1); // Reset page when new query is entered
   };
 
+  const handleCardClick = (payload: Modal) => {
+    setIsOpen(true);
+    setModalContent(payload);
+  };
+
+  const handleModalClose = () => {
+    setModalContent(null);
+    setIsOpen(false);
+  };
   return (
     <div className="w-full">
       <SearchBar setSearchQuery={handleQueryChange} />
-      {photos && <ImageGallery photos={photos} />}
+      {photos && (
+        <ImageGallery
+          photos={photos}
+          handleCardClick={handleCardClick}
+        />
+      )}
       {isLoading && <Loader />}
       {loadMore && <LoadMoreBtn handleLoadMore={handleLoadMore} />}
       <Toaster position="top-right" />
+      <ImageModal
+        isOpen={isOpen}
+        modalContent={modalContent}
+        handleModalClose={handleModalClose}
+      />
     </div>
   );
 };

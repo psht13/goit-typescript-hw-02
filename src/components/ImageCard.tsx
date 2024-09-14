@@ -1,11 +1,18 @@
 interface ImageCard {
   url: string;
   alt: string | undefined;
+  largeUrl: string;
+  handleCardClick: (payload: Modal) => void;
 }
 
-const ImageCard = ({ url, alt }: ImageCard) => {
+const ImageCard = ({ url, alt, handleCardClick, largeUrl }: ImageCard) => {
+  const handleClick = () => {
+    handleCardClick({ url: largeUrl, alt });
+  };
   return (
-    <div className=" h-[200px] overflow-hidden rounded-xl shadow-xl cursor-pointer">
+    <div
+      onClick={handleClick}
+      className=" h-[200px] overflow-hidden rounded-xl shadow-xl cursor-pointer">
       <img
         className="w-[300px] h-full"
         src={url}
